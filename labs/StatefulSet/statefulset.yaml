@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: statefulservice
+spec:
+  selector:
+    app: aspnetappstateful
+  clusterIP: None
+  # ports:
+  # - port: 80
+  #   name: web
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: aspnetappstateful
+  serviceName: statefulservice
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: aspnetappstateful
+    spec:
+      containers:
+      - name: webapp
+        image: vafzamora/aspnetapp:latest
+        ports:
+        - containerPort: 80
+          name: web

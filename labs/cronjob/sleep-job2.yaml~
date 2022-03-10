@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sleep-job
+spec:
+  jobTemplate:
+    metadata:
+      name: sleep-job
+    spec:
+      template:
+        metadata:
+          name: sleep-pod
+        spec:
+          containers:
+          - image: busybox
+            name: sleep-job
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '* */2 * * *'

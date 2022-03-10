@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata: 
+  name: nginx-prod
+  namespace: production
+spec: 
+  containers: 
+  - name: nginx-prod
+    image: nginx
+    ports:
+    - containerPort: 80
+      hostPort: 8081
+

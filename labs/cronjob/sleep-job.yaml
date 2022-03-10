@@ -1,0 +1,21 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata: 
+  name: sleep-job
+  labels: 
+    job: sleep
+spec: 
+  schedule: "* */2 * * *"
+  jobTemplate: 
+    metadata:
+      name: sleep-job
+    spec: 
+      template:
+        metadata: 
+          name: sleep-pod
+        spec: 
+          containers: 
+          - name: sleep-container
+            image: alpine
+            command: ["sleep","300"]
+          restartPolicy: OnFailure

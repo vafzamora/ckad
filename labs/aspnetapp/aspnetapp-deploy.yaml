@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: aspnetapp
+  name: aspnetapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aspnetapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: aspnetapp
+    spec:
+      containers:
+      - image: vafzamora/aspnetapp
+        name: samples
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 1
+            memory: "500M"
+          requests:
+            cpu: "0.5"
+            memory: "250M"
